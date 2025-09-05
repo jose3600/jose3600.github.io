@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0b2342;
+      font-family: Arial, sans-serif;
+      color: #111;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #1b1b1b;
+      padding: 10px 1rem;
+      color: white;
+      z-index: 1000;
+      box-sizing: border-box;
+    }
+
+    nav.navbar {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    nav.navbar a,
+    nav.navbar button {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    nav.navbar a:hover,
+    nav.navbar button:hover {
+      color: #00ffff;
+      transform: scale(1.05);
+    }
+
+    .container-lado-a-lado {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      padding: 30px;
+      margin-top: 90px; /* para compensar header fixo */
+      background-color: white;
+      color: #111;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .lado.imagem,
+    .lado.texto {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .imagem-personalizada {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      border: 2px solid #0b2342;
+    }
+
+    .linha-vertical {
+      width: 2px;
+      height: 250px;
+      background-color: #0b2342;
+      border: none;
+    }
+
+    span {
+      transition: all 0.3s;
+      color: #e11d48;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="index.html"><i class="fas fa-home"></i> Voltar</a>
+      <button onclick="mostrarAlerta()"><i class="fas fa-user-alt"></i> Sobre Mim</button>
+    </nav>
+  </header>
+
+  <section class="home">
+    <div class="container-lado-a-lado">
+      <div class="lado imagem">
+        <img src="./img/mim.gif" alt="Imagem Perfil" class="imagem-personalizada" />
+      </div>
+
+      <hr class="linha-vertical" />
+
+      <div class="lado texto">
+        <h1></h1>
+        <p>
+          Oi! Meu nome é José, tenho 19 anos e estou começando minha jornada no mundo da
+          <strong>programação</strong>. No momento, estou aprendendo <strong>JavaScript</strong>, mas confesso
+          que tenho uma quedinha maior por <strong>HTML</strong> e <strong>CSS</strong> — gosto de ver as coisas
+          ganhando forma na tela.
+          Sou um programador iniciante, mas tenho muita vontade de aprender e evoluir. Gosto da ideia de criar
+          algo do zero, resolver problemas e deixar os projetos com a minha cara. Mesmo com pouco tempo de
+          experiência, estou sempre explorando novas ferramentas, testando coisas diferentes e tentando entender
+          como tudo funciona por trás das páginas que a gente vê na web.
+          Esse portfólio é uma forma de mostrar um pouco do que já aprendi até aqui e também de registrar meu
+          crescimento nessa área que me despertou tanta curiosidade. Seja bem-vindo(a)!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const titulo = "Sobre Mim";
+      let i = 0;
+      const elemento = document.querySelector("h1");
+      elemento.textContent = "";
+
+      function digitar() {
+        if (i < titulo.length) {
+          elemento.textContent += titulo.charAt(i);
+          i++;
+          setTimeout(digitar, 100);
+        }
+      }
+      digitar();
+
+      const paragrafo = document.querySelector(".lado.texto p");
+      const palavras = ["JavaScript", "programação", "projetos", "HTML", "CSS", "desenvolvimento"];
+      let texto = paragrafo.innerHTML;
+
+      palavras.forEach((palavra) => {
+        const regex = new RegExp(`\\b(${palavra})\\b`, "gi");
+        texto = texto.replace(regex, '<span>$1</span>');
+      });
+
+      paragrafo.innerHTML = texto;
+    });
+
+    function mostrarAlerta() {
+      alert("Você está na Aba Sobre Mim.");
+    }
+  </script>
+</body>
+</html>
